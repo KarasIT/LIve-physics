@@ -1,0 +1,42 @@
+import pygame
+pygame.init()
+
+W = 1000
+H = 600
+FPS=60
+
+ww = pygame.display.set_mode((W, H))
+pygame.display.set_caption("Живая физика")
+pygame.display.set_icon(pygame.image.load("k.JPG"))
+
+much_imag=pygame.image.load("vc.jpg")
+much_w = 259
+much_h = 250
+much_x = 350
+much_y = 50
+ay=1
+much_speed = 300
+
+
+
+fon = pygame.image.load("h.jpg")
+
+much_imag.set_colorkey((255, 255, 255))
+
+clock = pygame.time.Clock()
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+        if  much_y + much_h < H:
+           much_y = much_speed
+           much_speed = (much_speed + ay + 1) // 0.98
+
+
+        ww.blit(fon,(0, 0))
+        ww.blit(much_imag,(much_x, much_y))
+        pygame.display.update()
+        clock.tick(FPS)
+pygame.quit()
